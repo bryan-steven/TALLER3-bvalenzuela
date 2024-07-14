@@ -13,16 +13,13 @@ class Guarderia:
         self.hurones.append(Huron(nombre="Furrito", peso=2.1, edad=1, pais_origen="Bolivia", impuestos=0.3))
 
     def alimentar_boa(self, boa):
+        if boa is None or boa not in self.boas:
+            return "Esta boa no existe!"
         try:
-            if boa is None or boa not in self.boas:
-                raise ValueError("Esta boa no existe!")
-                
-            if self.ratones_comidos >= 10:
-                raise ValueError("La boa está llena!")
-            
             boa.comer_ratón()
-            self.ratones_comidos += 1
-            print(f"Éxito. {boa._nombre} ha comido un ratón.")
-            
         except ValueError as e:
-            print(e)
+            return str(e)
+        else:
+            return "Éxito"
+        finally:
+            pass
